@@ -12,6 +12,7 @@ namespace WindowsServiceExample
         static void Main(string[] args)
         {
             var container = new UnityContainer();
+            container.RegisterType<IExamplaryService, ExamplaryService>(new ContainerControlledLifetimeManager());
             container.RegisterType<IAppInsightsService, AppInsightsService>(new ContainerControlledLifetimeManager());
             container.RegisterType<IEventLogService, EventLogService>(new ContainerControlledLifetimeManager());
             container.RegisterInstance<ILoggerFactory>(new LoggerFactory());
@@ -40,7 +41,6 @@ namespace WindowsServiceExample
 
             int exitCodeValue = (int)Convert.ChangeType(exitCode, exitCode.GetTypeCode());
             Environment.ExitCode = exitCodeValue;
-
         }
     }
 }
